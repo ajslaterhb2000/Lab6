@@ -73,7 +73,11 @@ class JournalEntry extends HTMLElement {
      */
     
     // CODE GOES HERE
-
+    
+    this.shadowRoot.querySelector("article").getElementsByClassName("entry-date")[0].innerHTML = entry.date;
+    this.shadowRoot.querySelector("article").getElementsByClassName("entry-title")[0].innerHTML = entry.title;
+    this.shadowRoot.querySelector("article").getElementsByClassName("entry-content")[0].innerHTML = entry.content;
+    
     if (entry.image) {
       let entryImage;
       /*
@@ -84,9 +88,12 @@ class JournalEntry extends HTMLElement {
        */
 
       // CODE GOES HERE vvv
-
-
-
+      
+      entryImage = document.createElement('img');
+      entryImage.src=entry.image.src;
+      entryImage.alt = entry.image.alt;
+      entryImage.setAttribute('class','entry-image');
+      this.shadowRoot.querySelector('article').appendChild(entryImage);
 
 
       // CODE GOES HERE ^^^
@@ -109,8 +116,12 @@ class JournalEntry extends HTMLElement {
        * 3. append the audio element to the appropriate location in this component
        */
 
-      // CODE GOES HERE vvv
-
+      // CODE GOES HERE 
+      entryAudio = document.createElement('audio');
+      entryAudio.src=entry.audio;
+      entryAudio.controls = 'true';
+      entryAudio.setAttribute('class','entry-audio');
+      this.shadowRoot.querySelector('article').appendChild(entryAudio);
 
 
 
